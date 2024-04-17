@@ -19,11 +19,6 @@ public class StudentService {
         return studentRepository.findAll();
     }
     
-    // 学生絞り込み表示メソッド
-    public List<StudentModel> filterStudents(Integer entYear, String classNum, boolean isAttend) {
-        return studentRepository.findByEntYearAndClassNumAndIsAttend(entYear, classNum, isAttend);
-    }
-	
 	// 生徒追加メソッド
     public void saveStudent(StudentModel studentModel) {
         studentRepository.save(studentModel);
@@ -47,4 +42,12 @@ public class StudentService {
         Optional<StudentModel> student = studentRepository.findById(id);
         return student.orElse(null);
     }
+    
+    // 学生絞り込み表示メソッド(入学年度・クラス・在学中フラグ)
+    public List<StudentModel> filterStudents(Integer entYear, String classNum, boolean isAttend) {
+    	// if文で絞り込みの種類を増やす
+    	
+        return studentRepository.findByEntYearAndClassNumAndIsAttend(entYear, classNum, isAttend);
+    }
+	
 }

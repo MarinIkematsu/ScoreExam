@@ -47,7 +47,7 @@ public class StudentController {
 	
 	@PostMapping("/main/students/create")
 	public String saveStudent(Model model,@ModelAttribute("studentModel") StudentModel studentModel) {
-    	studentModel.setIsAttend(false);
+    	studentModel.setIsAttend(true);
 		studentService.saveStudent(studentModel);
         return "redirect:/main/students/success";
     }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+	<header th:replace="~{score/base :: header}"></header>
+	<aside th:replace="~{score/base :: aside}"></aside>
+	
+	<main>
+		<div class="container mt-5">
+	    	<h2>科目登録</h2>
+	    	<form th:action="@{/main/subjects/create}" th:object="${subjectModel}" method="post" class="form-group">
+		        <div>
+		            <label for="subjectCd">科目コード</label>
+		            <input type="text" id="subjectCd" name="subjectCd" th:field="*{subjectCd}" class="form-control" placeholder="科目コードを入力してください     ※3文字以内" required>
+		        </div>
+		        <div>
+		            <label for="subjectName">科目名</label>
+		            <input type="text" id="subjectName" name="subjectName" th:field="*{subjectName}" class="form-control" placeholder="科目名を入力してください" required>
+		        </div>
+		        <button type="submit" class="btn btn-outline-primary" value="Create">登録</button>
+			</form>
+	    	<a href="/main/students" class="btn btn-secondary">戻る</a>
+		</div>
+	</main>
+	
+	
+	<br>
+	
+	<footer th:replace="~{score/base :: footer}"></footer>
+	
+	
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
