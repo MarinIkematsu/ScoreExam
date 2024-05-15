@@ -15,9 +15,15 @@ public class SubjectService {
     private SubjectRepository subjectRepository;
 	
 	// 科目一覧の取得
-	public List<SubjectModel> getAllSubjects() {
-        return subjectRepository.findAll();
+	//public List<SubjectModel> getAllSubjects() {
+    //    return subjectRepository.findAll();
+    //}
+	
+	// 学校コードに一致する科目情報を取得するメソッド
+    public List<SubjectModel> getAllSubjectsBySchoolCd(String schoolCd) {
+        return subjectRepository.findBySchoolCd(schoolCd);
     }
+	
 	// 科目の新規登録
 	public void saveSubject(SubjectModel subjectModel) {
         subjectRepository.save(subjectModel);
@@ -28,11 +34,15 @@ public class SubjectService {
     }
 	// 科目の削除
 	public void deleteSubject(SubjectModel subjectModel) {
-		subjectRepository.delete(subjectModel);
-    }
+	    subjectRepository.delete(subjectModel);
+	}
 	// IDを使用した科目の検索
 	public SubjectModel getSubjectById(Long id) {
         Optional<SubjectModel> subject = subjectRepository.findById(id);
         return subject.orElse(null);
     }
+
+	public SubjectModel getSubjectBySubjectCd(String subjectCd) {
+		return subjectRepository.findBySubjectCd(subjectCd);
+	}
 }

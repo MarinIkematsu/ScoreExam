@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Score Book</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+	<header th:replace="~{score/base :: header}"></header>
+	<aside th:replace="~{score/base :: aside}"></aside>
+	
+	<main>
+		<div style="text-align: center;">
+			<br>
+			<h2>学生管理</h2>
+			<a href="/main/students/create">新規登録</a>
+		</div>
+		
+		<!-- 絞り込みフォーム -->
+		<div class="container">
+	        <div class="row justify-content-center">
+	            <div class="col-md-8">
+	                <form th:action="@{/main/students}" method="post" style="display: flex;">
+	                    <table class="table table-borderless">
+		                    <thead>
+		                        <tr>
+		                            <th>入学年度</th>
+		                            <th>クラス</th>
+		                            <th>在学中</th>
+		                            <th></th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                        <tr>
+		                            <td>
+		                                <select id="entYear" name="entYear" class="form-control">
+		                                    <option value="">すべて</option>
+		                                    <option value="2014">2014年</option>
+		                                    <option value="2015">2015年</option>
+		                                    <option value="2016">2016年</option>
+		                                    <option value="2017">2017年</option>
+		                                    <option value="2018">2018年</option>
+		                                    <option value="2019">2019年</option>
+		                                    <option value="2020">2020年</option>
+		                                    <option value="2021">2021年</option>
+		                                    <option value="2022">2022年</option>
+		                                    <option value="2023">2023年</option>
+		                                    <option value="2024">2024年</option>
+		                                    <option value="2025">2025年</option>
+		                                    <option value="2026">2026年</option>
+		                                    <option value="2027">2027年</option>
+		                                    <option value="2028">2028年</option>
+		                                    <option value="2029">2029年</option>
+		                                    <option value="2030">2030年</option>
+		                                    <option value="2031">2031年</option>
+		                                    <option value="2032">2032年</option>
+		                                    <option value="2033">2033年</option>
+		                                    <option value="2034">2034年</option>
+		                                </select>
+		                            </td>
+		                            <td>
+		                                <select id="classNum" name="classNum" class="form-control">
+		                                    <option value="">すべて</option>
+		                                    <option th:each="classNum : ${classNums}" th:value="${classNum.classNum}" th:text="${classNum.classNum}"></option>
+		                                </select>
+		                            </td>
+		                            <td>
+		                                <div class="form-check">
+		                                    <input type="checkbox" id="isAttend" name="isAttend" class="form-check-input">
+		                                    <label for="isAttend" class="form-check-label">在学中</label>
+		                                    <input type="hidden" name="isAttend" value="false">
+		                                </div>
+		                            </td>
+		                            <td>
+		                                <button type="submit" class="btn btn-outline-primary">検索</button>
+		                            </td>
+		                        </tr>
+		                    </tbody>
+		                </table>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+		
+		
+		<!-- 学生一覧 -->
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<h4>学生一覧</h4>
+			    <table class="table table-bordered" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+			        <thead>
+			            <tr class="table-primary">
+			                <th align="center">入学年度</th>
+			                <th align="center">学生番号</th>
+			                <th align="center">氏名</th>
+			                <th align="center">クラス</th>
+			                <th align="center">在学中</th>
+			                <th class="non"></th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr th:each="student : ${students}">
+							<td th:text="${student.entYear}"></td>
+			                <td th:text="${student.studentNo}"></td>
+			                <td th:text="${student.studentName}"></td>
+							<td th:text="${student.classNum}"></td>
+							<td th:text="${student.isAttend != null && student.isAttend ? '◯' : '✕'}"></td>
+							<td><a th:href="@{/main/students/update(id=${student.id})}">変更</a></td>
+			            </tr>
+			        </tbody>
+			    </table>
+			</div>
+		</div>
+	    
+	    <div th:if="${students.isEmpty()}">
+			<p>学生情報なし</p>
+		</div>
+		
+		<div style="text-align: center;">
+			<a href="/main/home" class="btn btn-secondary">ホームに戻る</a>
+			<button onclick="history.back()" class="btn btn-outline-secondary">戻る</button>
+		</div>
+	</main>
+	
+	<br>
+	
+	<footer th:replace="~{score/base :: footer}"></footer>
+	
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

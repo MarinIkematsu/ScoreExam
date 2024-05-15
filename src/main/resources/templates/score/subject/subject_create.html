@@ -16,12 +16,17 @@
 	    	<form th:action="@{/main/subjects/create}" th:object="${subjectModel}" method="post" class="form-group">
 		        <div>
 		            <label for="subjectCd">科目コード</label>
-		            <input type="text" id="subjectCd" name="subjectCd" th:field="*{subjectCd}" class="form-control" placeholder="科目コードを入力してください     ※3文字以内" required>
+		            <input type="text" id="subjectCd" name="subjectCd" th:field="*{subjectCd}" class="form-control" placeholder="科目コードを入力してください     ※10文字以内" required>
 		        </div>
 		        <div>
 		            <label for="subjectName">科目名</label>
 		            <input type="text" id="subjectName" name="subjectName" th:field="*{subjectName}" class="form-control" placeholder="科目名を入力してください" required>
 		        </div>
+		        <div>
+					<input type="hidden" id="schoolCd" name="schoolCd" th:field="*{schoolCd}" th:value="${schoolCd}">
+				</div>
+		        
+		        <br>
 		        <button type="submit" class="btn btn-outline-primary" value="Create">登録</button>
 			</form>
 	    	<a href="/main/students" class="btn btn-secondary">戻る</a>

@@ -15,34 +15,9 @@
             <h1 class="headline">
 				<a>得点管理システム</a>
 			</h1>
-            <div class="text-right d-flex justify-content-end align-items-center">
-	            <span th:text="${teacherName} + ' 様  '"></span>&nbsp;
-	            <span>
-		            <form th:action="@{/logout}" method="post">
-						<button type="submit" class="btn btn-secondry">ログアウト</button>
-					</form>
-				</span>
-	        </div>
         </div>
     </header>
     
-
-    <div class="aside">
-		<aside>
-			<ul style="list-style: none;">
-				<li><a href="/main/home">メニュー</a></li>
-				<li><a href="/main/classes/create">クラス管理</a></li>
-				<li><a href="/main/students">学生管理</a></li>
-				
-				<label>成績管理</label>
-				<li><a href="/main/test/create">　成績登録</a></li>
-				<li><a href="/main/test/view">　成績参照</a></li>
-				
-				<li><a href="/main/subjects">科目管理</a></li>
-			</ul>
-		</aside>
-	</div>
-
 
     <!-- フッター -->
     <footer class="bg-light py-3" style="box-shadow: 0 -2px 4px rgba(0,0,0,0.1);">

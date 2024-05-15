@@ -1,4 +1,4 @@
-																																							package jp.ac.ohara.score.models;
+package jp.ac.ohara.score.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,17 +10,14 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Subjects")
-public class SubjectModel {
+@Table(name = "Classes")
+public class ClassModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	@Column(name = "id")
 	private Long id;
-    @Column(name = "subject_cd")
-    private String subjectCd;
-    @Column(name = "subject_name")
-    private String subjectName;
-    @Column(name = "school_cd")
-    private String schoolCd;
+	@Column(name = "class_num")
+	private String classNum;
+	@Column(name = "school_cd")
+	private String schoolCd;
 }
-

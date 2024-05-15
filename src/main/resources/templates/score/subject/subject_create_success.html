@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登録完了</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<header th:replace="~{score/base :: header}"></header>
+	<aside th:replace="~{score/base :: aside}"></aside>
+	
+	<main>
+	    <div class="container mt-5">
+			<h2>科目情報登録</h2>
+	        <div class="alert alert-success" role="alert">
+	            登録が完了しました。
+	        </div>
+	        <a href="/main/subjects" class="btn btn-outline-primary">科目一覧に戻る</a>
+	    </div>
+    </main>
+    
+    <br>
+	
+	<footer th:replace="~{score/base :: footer}"></footer>
+</body>
+</html>

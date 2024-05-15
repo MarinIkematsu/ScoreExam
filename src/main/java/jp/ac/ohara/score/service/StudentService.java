@@ -15,8 +15,12 @@ public class StudentService {
     private StudentRepository studentRepository;
 	
 	// 全生徒取得メソッド
-    public List<StudentModel> getAllStudents() {
-        return studentRepository.findAll();
+    //public List<StudentModel> getAllStudents() {
+    //    return studentRepository.findAll();
+    //}
+	// 学校コードに一致する学生情報を取得するメソッド
+    public List<StudentModel> getAllStudentsBySchoolCd(String schoolCd) {
+        return studentRepository.findBySchoolCd(schoolCd);
     }
     
 	// 生徒追加メソッド
@@ -44,10 +48,33 @@ public class StudentService {
     }
     
     // 学生絞り込み表示メソッド(入学年度・クラス・在学中フラグ)
-    public List<StudentModel> filterStudents(Integer entYear, String classNum, boolean isAttend) {
+    public List<StudentModel> filterStudents(Integer entYear, String classNum, Boolean isAttend) {
     	// if文で絞り込みの種類を増やす
+    	List<StudentModel> students = studentRepository.findAll();
+    	// 入学年度で絞り込み
+        if (entYear != null) {
+            students = studentRepository.findByEntYear(entYear);
+        }
+ 
+        // クラス番号で絞り込み
+        if (classNum != null && !classNum.isEmpty()) {
+            List<StudentModel> classNumStudents = studentRepository.findByClassNum(classNum);
+            students.retainAll(classNumStudents);
+        }
+ 
+        // 在学状況で絞り込み
+        if (isAttend != null) {
+            List<StudentModel> isAttendStudents = studentRepository.findByIsAttend(isAttend);
+            students.retainAll(isAttendStudents);
+        }
     	
-        return studentRepository.findByEntYearAndClassNumAndIsAttend(entYear, classNum, isAttend);
+        return students;
     }
-	
+    public List<StudentModel> findByEntYearAndClassNum(Integer entYear, String classNum){
+    	return studentRepository.findByEntYearAndClassNum(entYear,classNum);
+    }
+
+	public StudentModel getStudentByStudentNo(String studentNo) {
+		return studentRepository.findByStudentNo(studentNo);
+	}
 }
